@@ -40,7 +40,9 @@ y = pymc.Normal('y', mu=mu, tau=tau, value=y_obs, observed=True)
 # inference
 m = pymc.Model([a, b, tau, x, y])
 mc = pymc.MCMC(m)
-mc.sample(iter=110000, burn=10000, thin=3)
+# run 4 chains
+for i in range(4):
+    mc.sample(iter=30000, burn=10000)
 
 abar = a.stats()['mean']
 bbar = b.stats()['mean']
