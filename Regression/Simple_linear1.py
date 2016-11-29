@@ -1,24 +1,24 @@
 
 # coding: utf-8
 
-# In[14]:
+# In[1]:
 
 # https://dansaber.wordpress.com/2014/05/28/bayesian-regression-with-pymc-a-brief-tutorial/
 
 
-# In[17]:
+# In[2]:
 
 import pymc 
 import random
 
 import numpy as np
 import matplotlib.pyplot as plt
-import spacepy.plot as spp
 
 from scipy.stats import multivariate_normal
+get_ipython().magic('matplotlib inline')
 
 
-# In[45]:
+# In[3]:
 
 float_df = {}
 float_df['weight'] = np.linspace(10,100, 20)
@@ -28,7 +28,7 @@ plt.xlabel('weight')
 plt.ylabel('mpg')
 
 
-# In[46]:
+# In[4]:
 
 # NOTE: the linear regression model we're trying to solve for is
 # given by:
@@ -65,38 +65,25 @@ y = pymc.Normal('y', pred, err, value=np.array(float_df['mpg']), observed=True)
 model = pymc.Model([pred, b0, b1, y, err, x_weight])
 
 
-# In[ ]:
+# In[5]:
 
 mcmc = pymc.MCMC(model)
 mcmc.sample(50000, 20000, thin=60)
 
 
-# In[ ]:
+# In[13]:
+
+y_min = mcmc.stats()['pred']['quantiles'][2.5]
+y_max = mcmc.stats()['pred']['quantiles'][97.5]
+y_fit = mcmc.stats()['pred']['mean']
+
+plt.scatter(float_df['weight'], float_df['mpg'], label='data')
+
+plt.fill_between(float_df['weight'], y_min, y_max, color='0.5', alpha=0.5, label='model')
+plt.legend(loc='lower right', fancybox=True, shadow=True)
+
+
+# In[14]:
 
 pymc.Matplot.plot(mcmc)
-
-
-# In[ ]:
-
-b0.trace().shape
-
-
-
-# In[ ]:
-
-# the data
-plt.scatter(float_df['weight'], float_df['mpg'])
-plt.xlabel('weight')
-plt.ylabel('mpg')
-
-xtmp = float_df['weight']
-for i in range(20):
-    ind = np.random.randint(0, b0.trace().shape[0], 1)
-    ytmp = b0.trace()[ind] + xtmp*b1.trace()[ind] + err.trace()[ind]
-    plt.plot(xtmp, ytmp, lw=0.5)
-
-
-# In[ ]:
-
-
 
