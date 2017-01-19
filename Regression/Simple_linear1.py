@@ -71,7 +71,7 @@ mcmc = pymc.MCMC(model)
 mcmc.sample(50000, 20000, thin=60)
 
 
-# In[13]:
+# In[15]:
 
 y_min = mcmc.stats()['pred']['quantiles'][2.5]
 y_max = mcmc.stats()['pred']['quantiles'][97.5]
@@ -81,6 +81,8 @@ plt.scatter(float_df['weight'], float_df['mpg'], label='data')
 
 plt.fill_between(float_df['weight'], y_min, y_max, color='0.5', alpha=0.5, label='model')
 plt.legend(loc='lower right', fancybox=True, shadow=True)
+plt.xlabel('weight')
+plt.ylabel('mpg')
 
 
 # In[14]:
