@@ -1,0 +1,12 @@
+[submodule "Docs/Bayesian-Analysis-with-Python"]
+	path = Docs/Bayesian-Analysis-with-Python
+	url = git@github.com:PacktPublishing/Bayesian-Analysis-with-Python.git
+[submodule "Docs/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers"]
+	path = Docs/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers
+	url = git@github.com:CamDavidsonPilon/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers.git
+[submodule "Docs/Doing_bayesian_data_analysis"]
+	path = Docs/Doing_bayesian_data_analysis
+	url = git@github.com:aloctavodia/Doing_bayesian_data_analysis.git
+[submodule "Docs/Statistical-Rethinking-with-Python-and-PyMC3"]
+	path = Docs/Statistical-Rethinking-with-Python-and-PyMC3
+	url = git@github.com:aloctavodia/Statistical-Rethinking-with-Python-and-PyMC3.git
