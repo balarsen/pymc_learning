@@ -13,3 +13,4 @@ theano
 tqdm
 xarray
 ystockquote
+nbdime
