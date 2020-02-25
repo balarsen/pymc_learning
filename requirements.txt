@@ -15,3 +15,6 @@ xarray
 ystockquote
 nbdime
 path.py
+nose
+parameterized
+sympy
